@@ -2,7 +2,7 @@ class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
         unordered_map<int,int> mpp1;
-        unordered_map<int,bool> mpp2;
+        set<int> s;
 
         for(auto i:arr){
             mpp1[i]++;
@@ -10,10 +10,10 @@ public:
 
         for(auto i:mpp1){
             int ans = i.second;
-            if(mpp2[ans] == true) return false;
-            mpp2[ans] = true;
+            s.insert(ans);
         }
 
-        return true;
+        //if they are unique numbers of occurences then set and map will have same size
+        return s.size() == mpp1.size();
     }
 };
