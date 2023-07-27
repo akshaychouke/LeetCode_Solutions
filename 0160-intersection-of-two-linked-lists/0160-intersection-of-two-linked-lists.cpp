@@ -13,8 +13,8 @@ public:
 
         while(h1 != NULL || h2 != NULL){
             if(h1 == h2) return h1;
-            if(mpp[h1] == true && h1!= NULL ) return h1;
-            if(mpp[h2] == true && h2!= NULL) return h2;
+            if(mpp[h1] == true) return h1;
+            if(mpp[h2] == true) return h2;
 
             if(h1 != NULL) mpp[h1] = true;
             if(h2 != NULL) mpp[h2] = true;
