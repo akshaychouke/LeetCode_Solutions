@@ -1,19 +1,25 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        
-        map<char, int> charMap;
-        int start = -1;
-        int maxLen = 0;
-        
-        for (int i = 0; i < s.size(); i++) {
-            if (charMap.count(s[i]) != 0) {
-                start = max(start, charMap[s[i]]);
+        int n = s.length();
+        int left = 0;
+        unordered_set<char> st;
+        int ans = 0;
+
+        for(int right = 0;right<n;right++){
+            //check if character is already counted or not
+            if(st.count(s[right]) == 0){
+                st.insert(s[right]);
+                ans = max(ans,right-left+1);
             }
-            charMap[s[i]] = i;
-            maxLen = max(maxLen, i-start);
+            else{   //if character is counted
+                while(st.count(s[right])){    //keep removing elements until the repeated element is deleted
+                    st.erase(s[left++]);
+                }
+                st.insert(s[right]);
+            }
         }
-        
-        return maxLen;
+
+        return ans;
     }
 };
