@@ -13,11 +13,9 @@ public:
             int e=arr[i][1];
             if(s<end){
                 cnt++;
-                start=min(start,s);
                 end = min(end,e);
             }
             else{
-                start=min(start,s);
                 end = max(end,e);                
             }
         }
