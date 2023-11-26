@@ -10,40 +10,32 @@ class Solution
     int spanningTree(int V, vector<vector<int>> adj[])
     {
         // code here
-        vector<int> mst(V,0);
-        vector<int> dist(V,INT_MAX);
-        
-        dist[0] = 0;
-        
-        for(int i=0;i<V-1;i++){
-            
-            int mini = INT_MAX;
-            int u;
-            for(int v=0;v<V;v++){
-                if(mst[v] == 0 && dist[v] < mini){
-                    mini = dist[v];
-                    u = v;
-                }
-            }
-            
-            mst[u] = 1;
-            
-            for(auto it : adj[u]){
-                int v = it[0];
-                int wt = it[1];
-                
-                if(mst[v] == 0 && wt < dist[v]){
-                    dist[v] = wt;
-                }
-            }
-        }
-        
-        int ans = 0;
-        for(int i=0;i<V;i++){
-            ans += dist[i];
-        }
-        
-        return ans;
+		priority_queue<pair<int, int>,
+		               vector<pair<int, int> >, greater<pair<int, int>>> pq;
+
+		vector<int> vis(V, 0);
+		// {wt, node}
+		pq.push({0, 0});
+		int sum = 0;
+		while (!pq.empty()) {
+			auto it = pq.top();
+			pq.pop();
+			int node = it.second;
+			int wt = it.first;
+
+			if (vis[node] == 1) continue;
+			// add it to the mst
+			vis[node] = 1;
+			sum += wt;
+			for (auto it : adj[node]) {
+				int adjNode = it[0];
+				int edW = it[1];
+				if (!vis[adjNode]) {
+					pq.push({edW, adjNode});
+				}
+			}
+		}
+		return sum;
     }
 };
 
