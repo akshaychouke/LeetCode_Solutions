@@ -7,25 +7,26 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 class Solution{
-public:
-// calculate the maximum sum with out adjacent
-int findMaxSum(int *arr, int n) 
-{
-    if(n==1)
-    return arr[0];
-    int a,b,c;
-    a=arr[0];
-    b=max(a,arr[1]);
-    for(int i=2;i<n;i++)
-    {
-        c=max(b,a+arr[i]);
-        a=b;
-        b=c;
+public:	
+	// calculate the maximum sum with out adjacent
+    int Solve(int *arr,int ind,vector<int> &dp){
+        if(ind == 0) return arr[ind];
+         if(ind < 0) return 0;
+    
+         if(dp[ind] != -1) return dp[ind];
+         
+         int pick = arr[ind] + Solve(arr,ind-2,dp);
+         int notPick = 0 + Solve(arr,ind-1,dp);
+         
+         return dp[ind] = max(pick,notPick);
+         
     }
-    return c;
-}
+	int findMaxSum(int *arr, int n) {
+	    // code here
+	    vector<int> dp(n,-1);
+        return Solve(arr,n-1,dp);
+	}
 };
-
 
 //{ Driver Code Starts.
 
