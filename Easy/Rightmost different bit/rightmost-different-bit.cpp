@@ -19,12 +19,12 @@ class Solution
         
         int ans = 0;
         
-        while(m > 0 && n > 0){
+        while(m > 0 or n > 0){
             ans++;
-            int mLastBit = (m & 1);
-            int nLastBit = (n & 1);
+            // int mLastBit = (m & 1);
+            // int nLastBit = (n & 1);
             
-            if(mLastBit != nLastBit) return ans;
+            if((m & 1) != (n & 1)) return ans;
             
             n = n>>1;
             m = m>>1;
