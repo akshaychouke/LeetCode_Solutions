@@ -10,26 +10,24 @@ class Solution {
         int n = nums.size();
         
         if(n%2 != 0) return false;
+        unordered_set<int> st;
         
-        vector<bool> used(n,false);
-        for(int i=0;i<n-1;i++){
-            bool isFound = false;
-            if(used[i] == true) continue;
+        for(int i=0;i<n;i++){
+            int r1 = nums[i]%k;
+            int r2 = k-r1;
             
-            for(int j=i+1;j<n;j++){
-                if(used[j] == true) continue;
-                
-                if((nums[i]+nums[j])%k == 0){
-                    used[i] = true;
-                    used[j] = true;
-                    isFound = true;
-                    break;
-                }
+            if(st.find(r2) != st.end()){
+                st.erase(r2);
             }
-            if(isFound == false) return isFound;
+            else if(r1 == 0 && st.find(0) != st.end()){
+                st.erase(0);
+            }
+            else{
+                st.insert(r1);
+            }
         }
         
-        return true;
+        return st.size() == 0;  // if the size is 0 means all pairs are found 
     }
 };
 
