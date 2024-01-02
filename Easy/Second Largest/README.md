@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/second-largest3735/1?page=1&sortBy=submissions">Second Largest</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>Arr</strong> of size <strong>N</strong>, print second&nbsp;largest distinct element from an array.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/second-largest3735/1">Second Largest</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array <strong>Arr</strong> of size <strong>N</strong>, print second&nbsp;largest distinct element from an array.</span></p>
 <p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input:</strong> 
 N = 6
