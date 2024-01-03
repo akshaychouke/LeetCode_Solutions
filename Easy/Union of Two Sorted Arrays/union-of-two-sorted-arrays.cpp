@@ -4,6 +4,7 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution{
     public:
     //arr1,arr2 : the arrays
@@ -13,25 +14,39 @@ class Solution{
     {
         //Your code here
         //return vector with correct order of elements
-        unordered_map<int,int> mpp;
-        
-        for(int i=0;i<n;i++){
-            mpp[arr1[i]]++;
-        }
-
-        for(int i=0;i<m;i++){
-            mpp[arr2[i]]++;
-        }
         vector<int> ans;
-        for(auto it : mpp){
-            if(it.second > 0){
-                ans.push_back(it.first);
+        int i = 0, j = 0;
+        
+        while(i < n && j < m){
+            if(arr1[i] <= arr2[j]){
+                if(ans.size() == 0 || ans.back() != arr1[i])
+                    ans.push_back(arr1[i]);
+                i++;
+            }
+            else{
+                if(ans.size() == 0 || ans.back() != arr2[j])
+                    ans.push_back(arr2[j]);
+                j++;
             }
         }
-        sort(ans.begin(),ans.end());
+        
+        while(i < n){
+            if(ans.size() == 0 || ans.back() != arr1[i])
+                ans.push_back(arr1[i]);
+            i++;
+        }
+        while(j < m){
+            if(ans.size() == 0 || ans.back() != arr2[j])
+                ans.push_back(arr2[j]);
+            j++;
+        }
+        
+        // sort(ans.begin(),ans.end());
+        
         return ans;
     }
 };
+
 
 //{ Driver Code Starts.
 
