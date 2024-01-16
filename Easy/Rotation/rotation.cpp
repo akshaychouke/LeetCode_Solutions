@@ -10,16 +10,24 @@ class Solution{
 public:	
 	int findKRotation(int arr[], int n) {
 	    // code here
-	    int i = 1;
 	    
-	    for(;i<n;i++){
-	        if(arr[i-1] > arr[i]){
-	            break;
+	    int s = 0, e = n-1;
+	    
+	    int ans = 0;
+	    
+	    while(s < e){
+	        int mid = s + (e-s)/2;
+	        
+	        if(arr[mid] > arr[e]){
+	            
+	            s = mid + 1;
+	        }
+	        else{
+	            e = mid;
 	        }
 	    }
 	    
-	    int ans = i%n;
-	    return ans;
+	    return s;
 	}
 
 };
