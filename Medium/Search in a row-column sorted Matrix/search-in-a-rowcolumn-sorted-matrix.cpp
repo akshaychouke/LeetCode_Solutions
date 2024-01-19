@@ -9,17 +9,23 @@ class Solution
 {
     public:
     //Function to search a given number in row-column sorted matrix.
-    bool search(vector<vector<int> > matrix, int n, int m, int x) 
+    bool search(vector<vector<int> > mat, int n, int m, int target) 
     {
         // code here 
-        
-        for(int i=0;i<n;i++){
-            if(matrix[i][0] <= x && matrix[i][m-1] >= x){
-                bool temp =  binary_search(matrix[i].begin(),matrix[i].end(),x);
-                if(temp) return temp;
+        int row  = 0, col = m-1;
+
+        while(row < n && col >= 0){
+            int num = mat[row][col];
+
+            if(num == target) return true;
+
+            if(num > target){
+                col--;
+            }else{
+                row++;
             }
         }
-        
+
         return false;
     }
 };
