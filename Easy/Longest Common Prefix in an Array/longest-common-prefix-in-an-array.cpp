@@ -9,10 +9,10 @@ using namespace std;
 
 class Solution{
   public:
-    string compareStrings(string s,string t){
-        int i=0,j=0;
+    string CompareStrings(string s,string t){
+        int i = 0,j=0;
         
-        while(i<s.length() && j<t.length()){
+        while(i < s.length() && j < t.length()){
             if(s[i] != t[j]){
                 break;
             }
@@ -22,18 +22,21 @@ class Solution{
         
         return s.substr(0,i);
     }
+    
     string longestCommonPrefix (string arr[], int N)
     {
         // your code here
         string longest = arr[0];
         
         for(int i=1;i<N;i++){
-            longest = compareStrings(longest,arr[i]);
+            longest = CompareStrings(longest,arr[i]);
         }
-        if(longest.length() == 0) return "-1";
+        
+        if(longest == "") return "-1";
         return longest;
     }
 };
+
 
 //{ Driver Code Starts.
 int main()
