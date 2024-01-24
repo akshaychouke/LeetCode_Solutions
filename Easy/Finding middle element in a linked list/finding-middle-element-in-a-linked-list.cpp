@@ -42,15 +42,19 @@ class Solution{
     int getMiddle(Node *head)
     {
         // Your code here
-        Node* slow = head;
-        Node* fast = head;
+        Node* temp = head;
+        vector<int> vec;
         
-        while(fast != NULL && fast->next != NULL){
-            slow = slow->next;
-            fast = fast->next->next;
+        while(temp != NULL){
+            vec.push_back(temp->data);
+            temp = temp->next;
         }
         
-        return slow->data;
+        int n = vec.size();
+        // if(n%2 == 0){
+        //     return vec[(n/2) + 1];
+        // }
+        return vec[n/2];
     }
 };
 
