@@ -21,7 +21,7 @@ int totalFruits(int n, vector<int> &fruits)
                 {
                     mp[fruits[start]]--;
                     if(mp[fruits[start]]==0)
-                    mp.erase(fruits[start]);
+                        mp.erase(fruits[start]);
                     start++ ;
                 }
             }
