@@ -4,26 +4,30 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
     int maxChildren(int N, int M, vector<int> &greed, vector<int> &sz) {
-        // code here
-        sort(greed.begin(),greed.end());
-        sort(sz.begin(),sz.end());
+        sort(greed.begin(), greed.end());
+        sort(sz.begin(), sz.end());
         
-        int i=0,j=0,cnt=0;
+        int i = 0, j = 0;
+        int count = 0;
         
-        while(i<N && j<M){
+        while(j < sz.size() && i < greed.size()){
             if(sz[j] >= greed[i]){
-                cnt++;
                 i++;
+                j++;
+                count++;
             }
-            j++;
+            else{
+                j++;
+            }
         }
-        
-        return cnt;
+        return count;
     }
 };
+
 
 //{ Driver Code Starts.
 
