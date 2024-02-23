@@ -5,39 +5,43 @@ using namespace std;
 
 
 // } Driver Code Ends
-//User function Template for C++
-int Solve(int ind,int buy,int cap,vector<int>& prices,vector<vector<vector<int>>> &dp){
-    int n = prices.size();
-    if(ind == n || cap == 0) return 0;
-    
-    if(dp[ind][buy][cap] != -1) return dp[ind][buy][cap];
-    if(buy){
-        return dp[ind][buy][cap] = max(-prices[ind]+Solve(ind+1,0,cap,prices,dp),0+Solve(ind+1,1,cap,prices,dp));
-    }
-    else{
-        return dp[ind][buy][cap] = max(prices[ind]+Solve(ind+1,1,cap-1,prices,dp),0+Solve(ind+1,0,cap,prices,dp));
-    }
-}
-int maxProfit(vector<int>&prices){
-    //Write your code here..
-        int n = prices.size();
-        vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(2,vector<int>(3,0)));
-       
-        for(int ind=n-1;ind>=0;ind--){
-            for(int buy = 0;buy<=1;buy++){
-                for(int cap = 1;cap<=2;cap++){
-                        if(buy){
-                            dp[ind][buy][cap] = max(-prices[ind]+dp[ind+1][0][cap],0+dp[ind+1][1][cap]);
-                        }
-                        else{
-                             dp[ind][buy][cap] = max(prices[ind]+dp[ind+1][1][cap-1],0+dp[ind+1][0][cap]);
-                        }                    
-                }
-            }
-        }
+
+class Solution
+{
+    public:
+        //User function Template for C++
         
-        return dp[0][1][2];
-}
+int maxProfit(vector<int>&prices){
+        int n = prices.size();
+        vector<int>left(n,0),right(n,0);
+        if(n==1) {
+            return 0;
+        }
+        int maxi = prices[n-1], diff = INT_MIN;
+        for(int i=n-2; i>=0; i--) {
+            diff = max(diff,maxi-prices[i]);
+            right[i] = diff;
+            maxi = max(prices[i],maxi);
+        }
+        int mini = prices[0];
+        diff = INT_MIN;
+        for(int i=1; i<n; i++) {
+            diff = max(diff,prices[i]-mini);
+            left[i] = diff;
+            mini = min(prices[i],mini);
+        }   
+        int ans = INT_MIN;
+        for(int i=0; i<n-1; i++) {
+            ans = max(ans,left[i]+right[i+1]);
+        }
+        ans = max(right[0],ans);
+        if(ans<=0) {
+            return 0;
+        }
+        return ans;
+    }
+};
+
 
 //{ Driver Code Starts.
 
@@ -50,7 +54,8 @@ int main(){
         cin>>n;
         vector<int> price(n);
         for(int i=0;i<n;i++) cin>>price[i];
-        cout<<maxProfit(price)<<endl;
+        Solution obj;
+        cout<<obj.maxProfit(price)<<endl;
     }
 
 }
