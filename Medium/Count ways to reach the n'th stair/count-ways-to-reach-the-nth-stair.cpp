@@ -7,20 +7,23 @@ class Solution
 {
     public:
     //Function to count number of ways to reach the nth stair.
+    int mod = 1000000007;
+    int solve(int n,vector<int> &dp){
+        if(n == 0) return 1;
+        if(n < 0) return 0;
+        
+        if(dp[n] != -1) return dp[n]%mod;
+        
+        int twoStep = solve(n-2,dp);
+        int oneStep = solve(n-1,dp);
+        
+        return dp[n] = (oneStep%mod + twoStep%mod)%mod;
+    }
     int countWays(int n)
     {
         // your code here
-        int mod =1000000007;
-        vector<int> dp(n+1);
-        
-        dp[0] = 1;
-        dp[1] = 1;
-        
-        for(int i=2;i<=n;i++){
-            dp[i] = (dp[i-1]%mod + dp[i-2]%mod)%mod;
-        }
-        
-        return dp[n]%mod;
+        vector<int> dp(n+1,-1);
+        return solve(n,dp);
     }
 };
 
