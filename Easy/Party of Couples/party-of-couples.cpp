@@ -9,12 +9,13 @@ using namespace std;
 
 class Solution{
     public:
-    int findSingle(int N, int arr[]){
+    int findSingle(int n, int arr[]){
         // code here
         int ans = 0;
-        for(int i=0;i<N;i++){
-            ans = arr[i]^ans;
+        for(int i=0;i<n;i++){
+            ans = ans ^ arr[i];
         }
+        
         return ans;
     }
 };
