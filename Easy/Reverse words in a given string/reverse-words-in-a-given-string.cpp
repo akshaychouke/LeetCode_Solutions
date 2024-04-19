@@ -8,26 +8,23 @@ class Solution
 {
     public:
     //Function to reverse words in a given string.
-    string reverseWords(string s) 
+    string reverseWords(string S) 
     { 
         // code here 
-        int n = s.length();
-        
         string ans = "";
-        int i = n-1,j=n-1;
+        int n = S.length();
+        int i = n-1;
         
-        while(i >= 0){
-            
-            while(s[i] != '.' && i >= 0){
+        while(i>=0){
+            int j = i;
+            while(i>=0 and S[i] != '.'){
                 i--;
             }
             
-            string word = s.substr(i+1,j-i);
-            // reverse(word.begin(),word.end());
-            ans += word;
-            j = i - 1;
+            string st = S.substr(i+1,j-i);
+            ans += st;
             if(i > 0){
-                ans +='.';
+                ans += '.';
             }
             i--;
         }
